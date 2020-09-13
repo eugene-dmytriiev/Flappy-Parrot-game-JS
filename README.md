@@ -1,2 +1,2 @@
-# Flappy-bird-game-JS
+# Flappy-Parrot-game-JS
  
