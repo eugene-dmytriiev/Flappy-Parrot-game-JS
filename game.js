@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', ()=>{
+//document.addEventListener('DOMContentLoaded', ()=>{
 
     const cvs = document.getElementById("canvas");
     const ctx = cvs.getContext('2d');
@@ -65,7 +65,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
             ctx.drawImage(pipeNorth, pipe[i].x, pipe[i].y);
             ctx.drawImage(pipeSouth, pipe[i].x, pipe[i].y+pipeNorth.height+gap);
-
+            ctx.drawImage(fg, 0, cvs.height-fg.height);
+            ctx.drawImage(bird, bX, bY);
             pipe[i].x--;
 
             if(pipe[i].x == 100) {
@@ -75,23 +76,28 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 });
             }
             //detect collision
-            if(bX + bird.width >= pipe[i].x && bX <= pipe[i].x  + pipeNorth.width && (bY <= pipe[i].y + pipeNorth.height || bY + bird.height >= pipe[i].y+pipeNorth.height+gap) || bY + bird.height >= cvs.height-fg.height){
-                document.location.reload(); //reloads the page
+            if(bX + bird.width >= pipe[i].x && bX <= pipe[i].x  + pipeNorth.width && (bY <= pipe[i].y + pipeNorth.height || bY + bird.height >= pipe[i].y+pipeNorth.height+gap) || bY + bird.height > cvs.height-fg.height){
+                location.reload(); //reloads the page
             }
 
-            if(pipe[i].x == -6){
+            if(pipe[i].x == -7){
                 score++;
                 scoreAudio.play();
             }
         }
-        ctx.drawImage(fg, 0, cvs.height-fg.height);
-        ctx.drawImage(bird, bX, bY);
+        
         bY+=gravity;
         ctx.fillStyle = "#000";
         ctx.font = "20px Verdana";
-        ctx.fillText("Score: "+score, 10, cvs.height-20)
+        ctx.fillText("Score: "+score, 10, cvs.height-20);
+        
+        ctx.fillStyle = "red";
+        ctx.font = "20px Verdana";
+        ctx.fillText(bY+bird.height, 150, cvs.height-20);
+        ctx.fillText(cvs.height-fg.height, 150, cvs.height-40);
+        ctx.fillText(bY + bird.height > cvs.height-fg.height, 150, cvs.height-60);
         requestAnimationFrame(draw);
     }
-    pipeSouth.onload = draw;
 
-});
+    setTimeout(draw(), 0);
+//});
