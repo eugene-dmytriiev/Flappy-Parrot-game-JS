@@ -93,9 +93,9 @@
         
         ctx.fillStyle = "red";
         ctx.font = "20px Verdana";
-        ctx.fillText(bY+bird.height, 150, cvs.height-20);
-        ctx.fillText(cvs.height-fg.height, 150, cvs.height-40);
-        ctx.fillText(bY + bird.height > cvs.height-fg.height, 150, cvs.height-60);
+        ctx.fillText("Current Height "+bY+bird.height, 150, cvs.height-20);
+        ctx.fillText("Floor "+cvs.height-fg.height, 150, cvs.height-40);
+        ctx.fillText("Hit the floor "+bY + bird.height > cvs.height-fg.height, 150, cvs.height-60);
         requestAnimationFrame(draw);
     }
 
