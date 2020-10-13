@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             }
             //detect collision
             if(bX + bird.width >= pipe[i].x && bX <= pipe[i].x  + pipeNorth.width && (bY <= pipe[i].y + pipeNorth.height || bY + bird.height >= pipe[i].y+pipeNorth.height+gap) || bY + bird.height > cvs.height-fg.height){
-                window.alert("Reload?")
+                window.alert("Reload?");
                 location.reload(); //reloads the page
             }
 
